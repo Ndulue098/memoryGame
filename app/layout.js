@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} bg-whiteGray ${geistMono.variable} antialiased h-screen`}
+        className={`${geistSans.variable} bg-whiteGray ${geistMono.variable} overflow-x-hidden antialiased h-screen`}
       >
         <GameProvider>
 
