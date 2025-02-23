@@ -86,6 +86,9 @@ function GameProvider({children}){
           // playIndex: curState.playIndex<curState.players.length? curState.playIndex+1:0
         }
     case "selectedCard":
+      if(curState.uniqueCard>=2){
+        return curState
+      }
       return {...curState,uniqueCard:[...curState.uniqueCard,{uid: action.payload.uid, id:action.payload.id}]}
     case "playersIndex":
       return {...curState,playIndex:action.payload}
@@ -113,6 +116,7 @@ function GameProvider({children}){
   const [state,dispatch]=useReducer(reducer,initialState);
   const {gameData,uniqueCard,gameSettings,status,players,playIndex,secRemaining,moves}=state
 
+  //! del
   function handleFlipped(id){
     dispatch({type:"flipped",payload:id})
     // setGameCard(arr=>arr.map((val)=> val.id===id?{...val,isFlipped:!val.isFlipped}:val))

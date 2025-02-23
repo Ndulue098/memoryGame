@@ -10,9 +10,13 @@ export default function Game() {
   const {gridSize,character:settingCharacter}=gameSettings
 
   const [isProcessing,setIsProcessing]=useState(false)
-  function handleClick(id){
+  
+  function handleClick(uid,id){
     if(isProcessing||uniqueCard.length>2)return;
-    handleFlipped(id)
+    // handleFlipped(id)
+    // dispatch({type:"selectedCard",payload:{uid,id}})
+    dispatch({type:"selectedCard",payload:{uid,id}});
+    dispatch({ type: "flipped", payload: id });
   }
 
   useEffect(function(){
@@ -23,6 +27,7 @@ export default function Game() {
     }
 
     function Mached(){
+      setIsProcessing(true)
       const [start,end]=uniqueCard
       const {uid:fuid,id:fid} =start
       const {uid:suid,id:sid} =end
@@ -88,7 +93,7 @@ function Card({character,flipped,handleFlipped,id,handleClick,uniqueId,isOpen,se
   const output=settingCharacter==="num"?character:<img src={`./${character}.svg`} alt="game icon" />
 
   // return <div onClick={()=>{!flipped && handleCardClicked(id)  &handleSelectCard(uniqueId,id);orangeStyle(id)}} className={` text-whiteGray ${flipped && active && "bg-orange"} ${flipped?"bg-fairGray":"bg-darkerGray" } transition-all duration-700  cursor-pointer text-3xl rounded-full flex items-center justify-center w-full aspect-square`} >
-  return <div onClick={()=>{!flipped && handleClick(id)  &handleSelectCard(uniqueId,id);orangeStyle(id)}} className={` text-whiteGray ${flipped && active && "bg-orange"} ${flipped?"bg-fairGray":"bg-darkerGray" } transition-all duration-700  cursor-pointer text-3xl rounded-full flex items-center justify-center w-full aspect-square`} >
+  return <div onClick={()=>{!flipped && handleClick(uniqueId,id)  ;orangeStyle(id)}} className={` text-whiteGray ${flipped && active && "bg-orange"} ${flipped?"bg-fairGray":"bg-darkerGray" } transition-all duration-700  cursor-pointer text-3xl rounded-full flex items-center justify-center w-full aspect-square`} >
     {flipped ? output:""}
   </div> 
 
