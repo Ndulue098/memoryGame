@@ -1,101 +1,76 @@
+"use client"
+import {useGame } from "@/components/contexts/Gamecontext";
+import Finished from "@/components/Finished";
+import Game from "@/components/Game";
+import Navbar from "@/components/Navbar";
+import Players from "@/components/Players";
+import Settings from "@/components/Settings";
 import Image from "next/image";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const {status,gameSettings,players,playIndex,moves,dispatch,gameData}=useGame()
+  const {gridsize}=gameSettings
+  // console.log(status);
+  const mins=Math.floor((5*gameData.length)/60)
+    const second=(5*gameData.length)%60;
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  
+  const sortedPlayer=[...players].sort((a,b)=>b.score-a.score)
+  const winnner=sortedPlayer.filter((player)=>player.score===sortedPlayer.at(0)?.score)
+  // console.log(winnner);
+  
+  return (
+    <main className="px-6 py-6 flex flex-col h-full md:px-8 lg:max-w-[1100px] mx-auto">
+      <Navbar/>
+      <Game/>
+    
+      <Players players={players} playIndex={playIndex}/> 
+     {status==="play" && <Settings/>}
+     {status==="finished"&&<Finished player={players}>
+      <Finished.Layout>
+        <Finished.GameHead >
+          <h2 className="text-3xl text-verydarkerGray font-bold md:text-3xl capitalize text-center">
+            {winnner.length>1?"There is a tie":`Player ${sortedPlayer.at(0).players} Wins!`} 
+          </h2>
+          <p className="font-bold text-base text-center text-playerGray">Game over! Here are the results...</p>
+        </Finished.GameHead>
+        <Finished.GameData>
+              {sortedPlayer.map((play,i)=>{return <div className={` ${i===0?"bg-darkerGray":"bg-[#DFE5EA]"} capitalize rounded-lg p-4 flex justify-between items-center`}  key={i}>
+                    <p className={` ${i===0?"text-whiteGray":"text-playerGray"} text-base font-bold `}>player  {play.players} {i===0&&"(Winner)"}</p>
+                    <p className={` ${i===0?"text-whiteGray":"text-verydarkerGray"} font-bold text-2xl `}>{play.score} Pairs</p>
+              </div>} )}
+        </Finished.GameData>
+        <Finished.Button dispatch={dispatch}/>
+      </Finished.Layout>
+      
+      </Finished>
+      }
+
+
+     {status==="timeup"&&<Finished player={players}>
+      <Finished.Layout>
+        <Finished.GameHead >
+          <h2 className="text-3xl text-verydarkerGray font-bold md:text-3xl capitalize text-center">
+            you did it!
+        </h2>
+        <p className="font-bold text-base text-center text-playerGray">Game over! Here&rsquo;s how you got on...</p>
+        </Finished.GameHead>
+        <Finished.GameData>
+              <div className="bg-fairGray p-4 flex justify-between items-center rounded-lg">
+                    <p className="text-base font-bold text-playerGray">Time Elapsed</p>
+                    <p className="font-bold text-2xl text-verydarkerGray">{`${mins}`.padStart(2,0)}:{`${second}`.padStart(2,0)}</p>
+                </div>
+                <div className="bg-fairGray p-4 flex justify-between items-center rounded-lg ">
+                    <p className="text-base font-bold text-playerGray">Moves Taken</p>
+                    <p className="font-bold text-2xl text-verydarkerGray flex items-center">{moves} Moves</p>
+              </div>
+        </Finished.GameData>
+        <Finished.Button dispatch={dispatch}/>
+      </Finished.Layout>
+      
+      </Finished>
+      }
+     
+    </main>
   );
 }

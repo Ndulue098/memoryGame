@@ -10,8 +10,15 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        darkerGray:"#31485A",
+        whiteGray:"#FCFCFC",
+        orange:"#FDA215",
+        fairGray:"#BBD0DA",
+        playerGray:"#718E9F",
+        verydarkerGray:"#172939",
       },
     },
   },
-  plugins: [],
+  plugins: [], 
 };
+ 

@@ -14,8 +14,33 @@
   }
 }
 
+.arror::before {
+    content: "";
+    position: absolute;
+    aspect-ratio: 1 / 1;
+    width: 1.5rem;
+    background-color: #FDA215;
+    top: 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+    z-index: -1;
+    left: 50%;
+    /* transform: rotate(45deg); */ 
+}
+
+
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+.perspective {
+  perspective: 1000px;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
 }
