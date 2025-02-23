@@ -6,7 +6,7 @@ export default function Players({players,playIndex}) {
                 <p className="hidden md:block capitalize font-bold text-lg">player {play.players}</p>
                 <p className="md:hidden uppercase font-bold text-2xl md:text-lg">p{play.players}</p>
 
-                <p className={`font-bold text-4xl md:text-xl lg:text-3xl  ${playIndex===i?"text-whiteGray":"text-darkerGray"}`}>{play.score}</p>
+                <p className={`font-bold text-4xl md:text-3xl  ${playIndex===i?"text-whiteGray":"text-darkerGray"}`}>{play.score}</p>
             </div>
             )} 
 

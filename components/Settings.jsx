@@ -59,7 +59,7 @@ function Button({children,type,onclick,data,datatype}){
 function SettingType({children,name}){
     return <div className="mb-7">
         <p className="text-base font-semibold capitalize mb-2 text-gray-500">{name}</p> 
-    <div className="flex justify-between items-center gap-4 text-lg font-semibold text-gray-100">
+    <div className="flex justify-between items-center gap-2 md:gap-4 text-lg font-semibold text-gray-100">
         {children}
     </div>
     </div>
