@@ -117,10 +117,7 @@ function GameProvider({children}){
   const {gameData,uniqueCard,gameSettings,status,players,playIndex,secRemaining,moves}=state
 
   //! del
-  function handleFlipped(id){
-    dispatch({type:"flipped",payload:id})
-    // setGameCard(arr=>arr.map((val)=> val.id===id?{...val,isFlipped:!val.isFlipped}:val))
-  }
+
 
   const totalScore=players.reduce((acc,cur)=>{
       return acc+cur.score
@@ -135,7 +132,7 @@ function GameProvider({children}){
 
 
 
-  return <GameContext.Provider value={{handleFlipped,gameData,dispatch,uniqueCard,gameSettings,status,players,playIndex,secRemaining,moves}}>
+  return <GameContext.Provider value={{gameData,dispatch,uniqueCard,gameSettings,status,players,playIndex,secRemaining,moves}}>
       {children} 
   </GameContext.Provider>
 

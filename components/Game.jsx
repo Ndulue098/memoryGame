@@ -5,16 +5,13 @@ import { useGame } from "./contexts/Gamecontext";
 
 
 export default function Game() {
-  const [isOpen,setIsOpen]=useState([])
-  const {handleFlipped,uniqueCard,gameData,dispatch,gameSettings}=useGame()
+  const {uniqueCard,gameData,dispatch,gameSettings}=useGame()
   const {gridSize,character:settingCharacter}=gameSettings
 
   const [isProcessing,setIsProcessing]=useState(false)
   
   function handleClick(uid,id){
     if(isProcessing||uniqueCard.length>2)return;
-    // handleFlipped(id)
-    // dispatch({type:"selectedCard",payload:{uid,id}})
     dispatch({type:"selectedCard",payload:{uid,id}});
     dispatch({ type: "flipped", payload: id });
   }
@@ -61,39 +58,22 @@ export default function Game() {
   <div className={`grid font-bold text-xl ${gridSize===4?"grid-cols-4":"grid-cols-6"} gap-4  w-full md:w-[90%] max-w-[400px] sm:max-w-[500px] md:max-w-[550px] md:gap-5 `}>
 
     { 
-      gameData.map((data,i)=> <Card id={data.id} handleClick={handleClick} gameid={i} isOpen={isOpen} setIsOpen={setIsOpen} uniqueCard={uniqueCard} settingCharacter={settingCharacter} dispatch={dispatch} uniqueId={data.uniqueId} handleFlipped={handleFlipped} key={i} character={data.character} flipped={data.isFlipped}/>)
+      gameData.map((data,i)=> <Card id={data.id} handleClick={handleClick}   settingCharacter={settingCharacter} uniqueId={data.uniqueId}  key={i} character={data.character} flipped={data.isFlipped}/>)
     }
   </div>
 </section>
 }
 
-function Card({character,flipped,handleFlipped,id,handleClick,uniqueId,isOpen,setIsOpen, gameid,uniqueCard,dispatch,settingCharacter}){
-  function handleSelectCard(uid,id){
-    dispatch({type:"selectedCard",payload:{uid,id}})
-  }
-  const [a,b]=isOpen    
-  const active=id===a || id===b
+function Card({character,flipped,id,handleClick,uniqueId,settingCharacter}){
 
-  function orangeStyle(id){
-
-    setIsOpen(open=>{
-      if(open.length>=2){
-        return [id]
-      }
-      return [...open,id]
-    })
-  }
   
-  function handleCardClicked(id){
-    if(uniqueCard.length>=2)return
-    handleFlipped(id)
-  }
+
 
   
   const output=settingCharacter==="num"?character:<img src={`./${character}.svg`} alt="game icon" />
 
   // return <div onClick={()=>{!flipped && handleCardClicked(id)  &handleSelectCard(uniqueId,id);orangeStyle(id)}} className={` text-whiteGray ${flipped && active && "bg-orange"} ${flipped?"bg-fairGray":"bg-darkerGray" } transition-all duration-700  cursor-pointer text-3xl rounded-full flex items-center justify-center w-full aspect-square`} >
-  return <div onClick={()=>{!flipped && handleClick(uniqueId,id)  ;orangeStyle(id)}} className={` text-whiteGray ${flipped && active && "bg-orange"} ${flipped?"bg-fairGray":"bg-darkerGray" } transition-all duration-700  cursor-pointer text-3xl rounded-full flex items-center justify-center w-full aspect-square`} >
+  return <div onClick={()=>{!flipped && handleClick(uniqueId,id)  ;orangeStyle(id)}} className={` text-whiteGray ${flipped?"bg-fairGray":"bg-darkerGray" } transition-all duration-700  cursor-pointer text-3xl rounded-full flex items-center justify-center w-full aspect-square`} >
     {flipped ? output:""}
   </div> 
 
