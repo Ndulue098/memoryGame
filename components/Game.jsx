@@ -70,11 +70,15 @@ function Card({character,flipped,handleFlipped,id,uniqueId,isOpen,setIsOpen, gam
     })
   }
   
+  function handleCardClicked(id){
+    if(uniqueCard.length>=2)return
+    handleFlipped(id)
+  }
 
   
   const output=settingCharacter==="num"?character:<img src={`./${character}.svg`} alt="game icon" />
 
-  return <div onClick={()=>{!flipped && handleFlipped(id); !flipped &&handleSelectCard(uniqueId,id);orangeStyle(id)}} className={` text-whiteGray ${flipped && active && "bg-orange"} ${flipped?"bg-fairGray":"bg-darkerGray" } transition-all duration-700  cursor-pointer text-3xl rounded-full flex items-center justify-center w-full aspect-square`} >
+  return <div onClick={()=>{!flipped && handleCardClicked(id)  &handleSelectCard(uniqueId,id);orangeStyle(id)}} className={` text-whiteGray ${flipped && active && "bg-orange"} ${flipped?"bg-fairGray":"bg-darkerGray" } transition-all duration-700  cursor-pointer text-3xl rounded-full flex items-center justify-center w-full aspect-square`} >
     {flipped ? output:""}
   </div> 
 
