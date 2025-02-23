@@ -29,7 +29,7 @@ export default function Home() {
      {status==="finished"&&<Finished player={players}>
       <Finished.Layout>
         <Finished.GameHead >
-          <h2 className="text-3xl text-verydarkerGray font-bold md:text-3xl capitalize text-center">
+          <h2 className="text-3xl text-verydarkerGray  font-bold md:text-3xl capitalize text-center">
             {winnner.length>1?"There is a tie":`Player ${sortedPlayer.at(0).players} Wins!`} 
           </h2>
           <p className="font-bold text-base text-center text-playerGray">Game over! Here are the results...</p>

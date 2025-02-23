@@ -58,9 +58,10 @@ export default function Navbar() {
                     <p className="font-bold sm:text-2xl text-lg">{moves}</p>
                 </div>
             </div>
-            <div className="md:hidden">
+
+            <div className="md:hidden">   
                 <button id="menuButton" onClick={toggleMenu} className="px-4 py-2 bg-orange rounded-full font-semibold ">Menu</button>
-                <div ref={navRef} className=" bg-gray-200 p-3 flex flex-col gap-2 rounded-lg absolute  mt-3 right-0 max-w-[19rem] md:hidden transition-transform duration-700 ease-in-out">
+                <div ref={navRef} className=" bg-gray-200 p-3 flex flex-col gap-2 rounded-lg     fixed       mt-3 right-0 max-w-[19rem] md:hidden transition-transform duration-700 ease-in-out">
                     <ResetButton secRemaining={secRemaining} onclick={() => {dispatch({ type: "reset" });toggleMenu();}} />
                     <NewGameButton secRemaining={secRemaining} onclick={() => {dispatch({ type: "play" });toggleMenu();}} />
                     {/* <button onClick={() => {dispatch({ type: "reset" });toggleMenu();}} className="px-4 py-2 flex-1 bg-orange rounded-full font-semibold text-whiteGray ">Restart</button> */}

@@ -16,7 +16,7 @@ export default function Settings() {
     },[character,playersNum,gridSize])
 
 
-    return <div className=" absolute inset-0 bg-verydarkerGray text-playerGray flex flex-col px-5">
+    return <div className="fixed inset-0 bg-verydarkerGray text-playerGray flex flex-col px-5">
                 <div className="my-auto"> 
                 <h2 className="text-2xl font-bold md:text-3xl mb-14 text-white text-center">memory</h2>
                     <div className="bg-white p-7 max-w-[500px] rounded-2xl mx-auto">

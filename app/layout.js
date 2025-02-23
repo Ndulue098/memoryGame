@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} bg-whiteGray ${geistMono.variable} overflow-x-hidden antialiased h-screen`}
       >
         <GameProvider>
-
           {children}
         </GameProvider>
       </body>
