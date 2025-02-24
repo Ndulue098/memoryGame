@@ -66,16 +66,17 @@ export default function Game() {
 
 function Card({character,flipped,id,handleClick,uniqueId,settingCharacter}){
 
+  // isOpen(opem=>{
+  //   if(open.length>=2){
+  //     return [id]
+  //   }
+  //   return [...open,id]
+  // })
   
-
-
-  
-  // const output=settingCharacter==="num"?character:<img src={`./${character}.svg`} alt="game icon" />
   const output=settingCharacter==="num"?character:<Image width={70} height={70} priority src={`./${character}.svg`} alt="game icon" />
 
-  // return <div onClick={()=>{!flipped && handleCardClicked(id)  &handleSelectCard(uniqueId,id);orangeStyle(id)}} className={` text-whiteGray ${flipped && active && "bg-orange"} ${flipped?"bg-fairGray":"bg-darkerGray" } transition-all duration-700  cursor-pointer text-3xl rounded-full flex items-center justify-center w-full aspect-square`} >
-  return <div onClick={()=>{!flipped && handleClick(uniqueId,id) }} className={` text-whiteGray ${flipped?"bg-fairGray":"bg-darkerGray" } transition-all duration-150 cursor-pointer text-3xl rounded-full flex items-center justify-center w-full aspect-square`} >
-    {flipped ? output:""}
+  return <div onClick={()=>{!flipped && handleClick(uniqueId,id) }} className={` text-whiteGray ${flipped?"bg-fairGray":"bg-darkerGray" } transition-all duration-300 cursor-pointer text-3xl rounded-full flex items-center justify-center w-full aspect-square`} >
+   { settingCharacter==="num"?(flipped && character):<Image width={70} height={70} priority src={`./${character}.svg`} alt="game icon" className={`${flipped ?"opacity-100":"opacity-0 w-[80%]"} `} />}
   </div> 
 
 }
