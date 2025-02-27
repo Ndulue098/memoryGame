@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useGame } from "./contexts/Gamecontext";
+import Link from "next/link";
 
 export default function Settings() {
     const [character,setChar]=useState("num");
@@ -15,11 +16,11 @@ export default function Settings() {
         dispatch({type:"gameSetting",payload:{character,playersNum,gridSize}})
     },[character,playersNum,gridSize])
 
-
-    return <div className="fixed inset-0 bg-verydarkerGray text-playerGray flex flex-col px-5">
+ 
+    return <div className="fixed inset-0 bg-custom-gradient text-playerGray flex flex-col px-5">
                 <div className="my-auto"> 
-                <h2 className="text-2xl font-bold md:text-3xl mb-14 text-white text-center">memory</h2>
-                    <div className="bg-white p-7 max-w-[500px] rounded-2xl mx-auto">
+                <h2 className="text-2xl font-bold md:text-3xl mb-14 text-orange text-center uppercase tracking-widest">Succinct</h2>
+                    <div className=" bg-black p-7 max-w-[500px] rounded-2xl mx-auto">
                         <SettingType name={"select theme"}>
                             <Button onclick={setChar} datatype="character" data={"num"}>Number</Button>
                             <Button onclick={setChar} datatype="character" data={"icon"}>Icons</Button>
@@ -39,19 +40,20 @@ export default function Settings() {
 
                         <button onClick={()=>dispatch({type:"ready"})} className=" flex-1 rounded-full primary py-4 text-xl w-full text-whiteGray font-semibold bg-orange">
                             Start Game
-                        </button>
+                        </button> 
                     </div>
+                    <p className="text-center">
+                    Coded by { }
+                    <Link href="https://x.com/Ndulue47" target="_blank" >Ndulue Christian </Link>
+                    </p>
                 </div>
         </div>
 }
 
 function Button({children,type,onclick,data,datatype}){ 
-    const {gameSettings}=useGame()
-    console.log(gameSettings);
-    console.log(datatype);
+    const {gameSettings}=useGame()    
     
-    
-    return <button onClick={()=>onclick(data)} className={`  ${gameSettings[datatype]===data?"bg-darkerGray":"bg-fairGray"} py-3 text-xl flex-1 rounded-full`}>
+    return <button onClick={()=>onclick(data)} className={`  ${gameSettings[datatype]===data?"bg-darkerGray":"bg-fairGray text-black"} py-3 text-xl flex-1 rounded-full`}>
         {children}
     </button>
 }

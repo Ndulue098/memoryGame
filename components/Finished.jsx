@@ -11,11 +11,11 @@ export default function Finished({children}){
 Finished.Layout=function Layout({children}){
     return <div className=" inset-0    fixed    bg-[#7D7D7D]/70 text-gray-900 flex flex-col px-5">
         <div className="my-auto">
-            <div className="bg-white p-6 max-w-[500px] rounded-2xl mx-auto">
+            <div className="bg-black p-6 max-w-[500px] rounded-2xl mx-auto">
                {children} 
-            </div> 
+            </div>   
         </div>
-    </div>
+    </div> 
 }
 
 Finished.GameHead=function GameHead({children}){

@@ -63,7 +63,7 @@ function GameProvider({children}){
       const newDeck = returnSuffledArr(numberOfPairs,character);
       // console.log(newDeck);
       
-      return {...curState,status:"ready",gameData:newDeck, secRemaining:5*newDeck.length, players:Array.from({length:curState.gameSettings.playersNum},(_,index)=>({players:index+1,score:0}))}
+      return {...curState,status:"ready",gameData:newDeck, secRemaining:7*newDeck.length, players:Array.from({length:curState.gameSettings.playersNum},(_,index)=>({players:index+1,score:0}))}
     case "finished":      
       return {...curState,status:"finished"}
     case "gameSetting":
