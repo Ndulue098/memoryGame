@@ -44,7 +44,7 @@ export default function Settings() {
                     </div>
                     <p className="text-center">
                     Coded by { }
-                    <Link href="https://x.com/Ndulue47" target="_blank" >Ndulue Christian </Link>
+                    <Link href="https://x.com/Ndulue47" target="_blank" >@Ndulue47</Link>
                     </p>
                 </div>
         </div>
@@ -53,13 +53,13 @@ export default function Settings() {
 function Button({children,type,onclick,data,datatype}){ 
     const {gameSettings}=useGame()    
     
-    return <button onClick={()=>onclick(data)} className={`  ${gameSettings[datatype]===data?"bg-darkerGray":"bg-fairGray text-black"} py-3 text-xl flex-1 rounded-full`}>
+    return <button onClick={()=>onclick(data)} className={`  ${gameSettings[datatype]===data?"bg-fairGray text-black":"bg-darkerGray "} py-3 text-xl flex-1 rounded-full`}>
         {children}
     </button>
-}
+} 
 
 function SettingType({children,name}){
-    return <div className="mb-7">
+    return <div className="mb-7"> 
         <p className="text-base font-semibold capitalize mb-2 text-gray-500">{name}</p> 
     <div className="flex justify-between items-center gap-2 md:gap-4 text-lg font-semibold text-gray-100">
         {children}
