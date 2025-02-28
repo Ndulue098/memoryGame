@@ -75,8 +75,10 @@ function Card({character,flipped,id,handleClick,uniqueId,settingCharacter}){
   
   // const output=settingCharacter==="num"?character:<Image width={70} height={70} priority src={`./${character}.svg`} alt="game icon" />
 
-  return <div onClick={()=>{!flipped && handleClick(uniqueId,id) }} className={` text-whiteGray ${flipped?"bg-fairGray":"bg-darkerGray" } transition-all duration-300 cursor-pointer text-3xl rounded-xl flex items-center justify-center w-full aspect-square`} >
-   { settingCharacter==="num"?(flipped && character):<Image width={70} height={70} priority src={`./${character}.svg`} alt="game icon" className={`${flipped ?"opacity-100":"opacity-0 w-[80%]"} `} />}
+  return <div onClick={()=>{!flipped && handleClick(uniqueId,id) }} className={` text-whiteGray ${flipped?"bg-fairGray":"bg-darkerGray" } transition-all duration-300 overflow-hidden cursor-pointer text-3xl rounded-xl flex items-center justify-center w-full aspect-square`} >
+   { settingCharacter==="num"?
+    <Image width={70} height={70} priority src={`/${character}.png`} alt="game icon" className={`${flipped ?"opacity-100":"opacity-0 w-[80%]"}`} /> :   
+   <Image width={70} height={70} priority src={`./${character}.svg`} alt="game icon" className={`${flipped ?"opacity-100":"opacity-0 w-[80%]"} `} />}
   </div>  
 
 }

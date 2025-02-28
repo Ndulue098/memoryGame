@@ -22,7 +22,7 @@ export default function Settings() {
                 <h2 className="text-2xl font-bold md:text-3xl mb-14 text-orange text-center uppercase tracking-widest">Succinct</h2>
                     <div className=" bg-black p-7 max-w-[500px] rounded-2xl mx-auto">
                         <SettingType name={"select theme"}>
-                            <Button onclick={setChar} datatype="character" data={"num"}>Number</Button>
+                            <Button onclick={setChar} datatype="character" data={"num"}>Pictures</Button>
                             <Button onclick={setChar} datatype="character" data={"icon"}>Icons</Button>
                         </SettingType>
 

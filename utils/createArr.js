@@ -10,7 +10,7 @@ function shuffle(array) {
 export function returnSuffledArr(length,opp){
     const a=Array.from({length},(_,index)=>({
       id:index,
-      character: opp==="num"? index+1:`icon${index+1}`,  
+      character: opp==="num"? `img${index+1}`:`icon${index+1}`,  
       uniqueId: index,        
       isFlipped: false,
       isMatched: false,

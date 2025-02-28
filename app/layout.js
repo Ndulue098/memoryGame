@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
       >
         <GameProvider>
           {children} 
-        </GameProvider>
+        </GameProvider> 
       </body>
     </html>
   );
